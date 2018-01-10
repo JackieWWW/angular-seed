@@ -1,1 +1,114 @@
-<p>This is the partial for view 1.</p>
+<div ng-controller="View1Ctrl">
+
+  <form>
+    <label>Name: 
+        <input type="text" ng-model="user.name" ng-model-options="{updateOn: 'blur'}"/>
+    </label>
+  </form>
+  <br/>
+
+  <div>
+    <p>Family's Picks <button ng-model="status" ng-init="status=false" ng-click="status=!status">{{status? "hide" : "show"}}</button></p>
+      <ul  ng-show="status">
+        <li ng-repeat="item in list track by $index">
+          {{item.name}} picks {{item.mainModel}}, {{item.drinkModel}} and {{item.fruitModel}}
+          <button ng-click="clear($index)">clear</button>
+          <button ng-click="update(item.name, $index)">update</button>
+        </li>
+      </ul>
+
+  </div>
+  <br/>
+
+  <table>
+    <thead>
+      <tr><th colspan="12">Menu</tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> Main </td><td>Drinks</td><td>Fruits</td>
+      </tr>
+      <tr>
+        <td>
+          <li>
+            <label>Bread
+              <input type="checkbox" ng-model="mainModel.value1" ng-true-value="'Bread'" >
+            </label>
+          </li>
+          <li>
+            <label>Cereal
+              <input type="checkbox" ng-model="mainModel.value2" ng-true-value="'Cereal'">
+            </label>
+          </li>
+          <li>
+            <label>Noodle
+              <input type="checkbox" ng-model="mainModel.value3" ng-true-value="'Noodle'">
+            </label>
+          </li>
+          <li>
+            <label>Dumplings
+              <input type="checkbox" ng-model="mainModel.value4" ng-true-value="'Dumplings'">
+            </label>
+          </li>
+        </td>
+        <td>
+          <li>
+            <label>Milk
+              <input type="checkbox" ng-model="drinkModel.value1" ng-true-value="'Milk'" >
+            </label>
+          </li>
+          <li>
+            <label>Yogurt
+              <input type="checkbox" ng-model="drinkModel.value2" ng-true-value="'Yogurt'">
+            </label>
+          </li>
+          <li>
+            <label>Honey Water
+              <input type="checkbox" ng-model="drinkModel.value3" ng-true-value="'Honey Water'">
+            </label>
+          </li>
+          <li>
+            <label>Coffee
+              <input type="checkbox" ng-model="drinkModel.value4" ng-true-value="'Coffee'">
+            </label>
+          </li>
+          <li>
+            <label>Tea
+              <input type="checkbox" ng-model="drinkModel.value5" ng-true-value="'Tea'">
+            </label>
+          </li>
+        </td>
+        <td>
+          <li>
+            <label>Apple
+              <input type="checkbox" ng-model="fruitModel.value1" ng-true-value="'Apple'" >
+            </label>
+          </li>
+          <li>
+            <label>Banana
+              <input type="checkbox" ng-model="fruitModel.value2" ng-true-value="'Banana'">
+            </label>
+          </li>
+          <li>
+            <label>Orange
+              <input type="checkbox" ng-model="fruitModel.value3" ng-true-value="'Orange'">
+            </label>
+          </li>
+          <li>
+            <label>Berries
+              <input type="checkbox" ng-model="fruitModel.value4" ng-true-value="'Berries'">
+            </label>
+          </li>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button ng-click="reset()">Confirm</button>
+  <div ng-show="user.name">
+    <p>{{user.name}}'s picks: </p>
+    <p>Main: {{pick('mainModel')}}</p>
+    <p>Drink: {{pick('drinkModel')}}</p>
+    <p>Fruit: {{pick('fruitModel')}}</p>
+  </div>
+
+</div>
